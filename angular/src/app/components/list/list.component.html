@@ -1,0 +1,57 @@
+<div class="container" *ngIf="arrayContactos.length == 0">
+    <p class="no-data">No existe ningún contacto aún</p>
+</div>
+
+<div class="container" *ngIf="arrayContactos.length > 0">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="datosContactos" class="mat-elevation-z8">
+            <ng-container matColumnDef="nombreContacto">
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="apellidosContacto">
+                <th mat-header-cell *matHeaderCellDef> Apellidos </th>
+                <td mat-cell *matCellDef="let element"> {{element.apellidos}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edadContacto">
+                <th mat-header-cell *matHeaderCellDef> Edad </th>
+                <td mat-cell *matCellDef="let element"> {{element.edad}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="dniContacto">
+                <th mat-header-cell *matHeaderCellDef> DNI </th>
+                <td mat-cell *matCellDef="let element"> {{element.dni}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="cumpleanosContacto">
+                <th mat-header-cell *matHeaderCellDef> Fecha nacimiento </th>
+                <td mat-cell *matCellDef="let element"> {{element.cumpleanos | date: 'dd-MM-yyyy'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="colorFavoritoContacto">
+                <th mat-header-cell *matHeaderCellDef> Color Favorito </th>
+                <td mat-cell *matCellDef="let element"> {{element.colorFavorito}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sexoContacto">
+                <th mat-header-cell *matHeaderCellDef> Sexo </th>
+                <td mat-cell *matCellDef="let element"> {{element.sexo}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="editar">
+                <th mat-header-cell *matHeaderCellDef> Editar </th>
+                <td mat-cell *matCellDef="let row"><button routerLink="/editarContacto/{{row._id}}" mat-button >Editar</button></td>
+            </ng-container>
+
+            <ng-container matColumnDef="eliminar">
+                <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+                <td mat-cell *matCellDef="let row"><button mat-button (click)='eliminarContacto(row._id)' >Eliminar</button></td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+            <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+        </table>
+    </div>
+</div>

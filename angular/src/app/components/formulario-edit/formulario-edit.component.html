@@ -1,0 +1,92 @@
+<!-- Formulario -->
+<div class="container">
+	<form (ngSubmit)="editarContacto()">
+		<mat-card>
+            <h4>Editar contacto</h4>
+			<div [formGroup]="contactoFormulario" class="controlers-wrapper">
+				<!--nombre-->
+				<div>
+					<mat-form-field>
+						<input matInput class="form-control" type="text" placeholder="Nombre"
+							[formControl]="contactoFormulario.controls['nombreContacto']">
+						<mat-error *ngIf="this.contactoFormulario.controls['nombreContacto'].hasError('required')">
+							Debe escribir su <strong> nombre</strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<!--apellidos-->
+				<div>
+					<mat-form-field>
+						<input matInput class="form-control" type="text" placeholder="Apellidos"
+							[formControl]="contactoFormulario.controls['apellidosContacto']">
+						<mat-error *ngIf="this.contactoFormulario.controls['apellidosContacto'].hasError('required')">
+							Debe escribir sus <strong>apellidos</strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<!--edad-->
+				<div>
+					<mat-form-field>
+						<input matInput class="form-control" type="number" placeholder="Edad"
+							[formControl]="contactoFormulario.controls['edadContacto']">
+						<mat-error *ngIf="this.contactoFormulario.controls['edadContacto'].hasError('required')">
+							Debe introducir su <strong> edad </strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<!--dni-->
+				<div>
+					<mat-form-field>
+						<input matInput class="form-control" type="text" placeholder="DNI"
+							[formControl]="contactoFormulario.controls['dniContacto']">
+						<mat-error *ngIf="this.contactoFormulario.controls['dniContacto'].hasError('required')">
+							Debe introducir su <strong> dni. </strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<!--cumpleaños-->
+				<div>
+					<mat-form-field>
+						<input matInput class="form-control" placeholder="Cumpleaños" [matDatepicker]="picker"
+							[formControl]="contactoFormulario.controls['cumpleanosContacto']">
+						<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+						<mat-datepicker #picker></mat-datepicker>
+						<mat-error *ngIf="this.contactoFormulario.controls['cumpleanosContacto'].hasError('required')">
+							Introduzca su fecha de <strong> cumpleaños </strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<!--color-->
+				<div>
+					<mat-form-field>
+						<input matInput class="form-control" type="text" placeholder="Color Favorito"
+							[formControl]="contactoFormulario.controls['colorContacto']">
+						<mat-error *ngIf="this.contactoFormulario.controls['colorContacto'].hasError('required')">
+							Debe introducir su <strong>color favorito</strong>
+						</mat-error>
+					</mat-form-field>
+				</div>
+				<!--sexo-->
+				<div>
+					<label id="labelContactoSexo">Sexo:</label>
+					<mat-radio-group aria-labelledby="labelContactoSexo" class="list-radio-group"
+						[formControl]="contactoFormulario.controls['sexoContacto']">
+						<mat-radio-button class="list-radio-button" *ngFor="let sexo of sexos" [value]="sexo">
+							{{sexo}}
+						</mat-radio-button>
+					</mat-radio-group>
+				</div>
+			</div>
+		</mat-card>
+
+		<!--boton añadir persona-->
+		<mat-card>
+			<div class="full-wrapper button-wrapper">
+				<div class="button-wrapper">
+					<button mat-raised-button color="primary" [disabled]="contactoFormulario.invalid"
+						type="submit">Editar Contacto</button>
+				</div>
+			</div>
+		</mat-card>
+	</form>
+</div>

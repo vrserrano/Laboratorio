@@ -1,0 +1,8 @@
+.list-radio-group {
+    display: flex;
+    flex-direction: column;
+}
+  
+.list-radio-button {
+    margin: 0px;
+}
